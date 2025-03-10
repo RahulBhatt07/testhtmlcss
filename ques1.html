@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #e9ecef;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .edit, .delete {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .edit { color: #007bff; }
+        .delete { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Todo List</h2>
+        <input type="text" id="todoInput" placeholder="Add a new task...">
+        <button onclick="addTodo()">Add</button>
+        <ul id="todoList"></ul>
+    </div>
+    <script>
+        function addTodo() {
+            let input = document.getElementById("todoInput");
+            let text = input.value.trim();
+            if (text === "") return;
+            
+            let li = document.createElement("li");
+            li.innerHTML = `<span>${text}</span>
+                            <button class="edit" onclick="editTodo(this)">✏️</button>
+                            <button class="delete" onclick="deleteTodo(this)">❌</button>`;
+            
+            document.getElementById("todoList").appendChild(li);
+            input.value = "";
+        }
+
+        function editTodo(button) {
+            let li = button.parentElement;
+            let span = li.querySelector("span");
+            let newText = prompt("Edit your todo:", span.textContent);
+            if (newText !== null) {
+                span.textContent = newText;
+            }
+        }
+
+        function deleteTodo(button) {
+            let li = button.parentElement;
+            li.remove();
+        }
+    </script>
+</body>
+</html>

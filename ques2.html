@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 20px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #book-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .book-card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Book List</h1>
+    </header>
+    <main>
+        <button onclick="addBook()">Add Book</button>
+        <section id="book-list"></section>
+    </main>
+    <script>
+        function addBook() {
+            let title = prompt("Enter book title:");
+            let author = prompt("Enter book author:");
+            let description = prompt("Enter book description:");
+
+            if (title && author && description) {
+                let bookList = document.getElementById("book-list");
+                let bookCard = document.createElement("div");
+                bookCard.classList.add("book-card");
+
+                bookCard.innerHTML = `
+                    <h2>${title}</h2>
+                    <h3>by ${author}</h3>
+                    <p>${description}</p>
+                `;
+
+                bookList.appendChild(bookCard);
+            } else {
+                alert("All fields are required!");
+            }
+        }
+    </script>
+</body>
+</html>
